@@ -1,1 +1,1 @@
-IT361 Project GYM managment system
+IT361 Project GYM management system

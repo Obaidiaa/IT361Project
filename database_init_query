@@ -1,0 +1,263 @@
+-- Create Gym Management System Database
+create database it361_project;
+
+use it361_project;
+-- Create Member Table
+create table Member(
+MemberID int primary key auto_increment,
+Name varchar(255),
+Address varchar(255),
+Phone varchar(15),
+Email varchar(255)
+ );
+-- Create Subscription Table
+create table Subscription(
+SubscriptionID int primary key auto_increment,
+StartDate Date,
+EndDate Date,
+Price Decimal(10,2),
+MemberID int unique not null,
+foreign key (MemberID) references Member(MemberID)
+ );
+-- Create Trainer Table
+create table Trainer(
+TrainerID int primary key auto_increment,
+Name varchar(255),
+Specialization varchar(255),
+Phone varchar(15),
+Email varchar(255)
+ );
+-- Create Class Table
+create table Class(
+ClassID int primary key auto_increment,
+ClassName varchar(255),
+Duration int,
+Class_Time Time
+ );
+-- Create Class Members Table many to many relationship
+create table Class_Members(
+MemberID int,
+ClassID int,
+primary key (MemberID, ClassID),
+foreign key (MemberID) references Member(MemberID),
+foreign key (ClassID) references Class(ClassID)
+ );
+-- Create Class Trainers Table many to many relationship
+create table Class_Trainers(
+TrainerID int,
+ClassID int,
+primary key (TrainerID, ClassID),
+foreign key (TrainerID) references Trainer(TrainerID),
+foreign key (ClassID) references Class(ClassID)
+ );
+-- Create Equipment Table
+create table Equipment(
+EquipmentID int primary key auto_increment,
+EquipmentName varchar(255),
+Quantity int
+ );
+-- Insert 20 members
+INSERT INTO Member (Name, Phone, Address, Email)
+VALUES
+ ('Ahmed Al-Harbi', '966501234567', 'Jeddah, Al-Balad District',
+'ahmed.alharbi@email.com'),
+ ('Yousef Al-Ghamdi', '966544123456', 'Jeddah, Al-Shati District',
+'yousef.alghamdi@email.com'),
+ ('Mohammed Al-Mansour', '966533456789', 'Jeddah, Al-Hamra
+District', 'mohammed.almansour@email.com'),
+ ('Saud Al-Rashid', '966574567890', 'Jeddah, Al-Zahra District',
+'saud.alrashid@email.com'),
+ ('Khalid Al-Qahtani', '966565678901', 'Jeddah, Al-Rawdah
+District', 'khalid.alqahtani@email.com'),
+ ('Fahad Al-Dosari', '966586789012', 'Jeddah, Al-Mohammadiyah
+District', 'fahad.aldosari@email.com'),
+ ('Abdullah Al-Sulaiman', '966590123456', 'Jeddah, Al-Muntazah
+District', 'abdullah.alsulaiman@email.com'),
+ ('Majed Al-Ali', '966512345678', 'Jeddah, Al-Khalidiyah District',
+'majed.alali@email.com'),
+ ('Salem Al-Jaber', '966534567890', 'Jeddah, Al-Nuzhah District',
+'salem.aljaber@email.com'),
+ ('Hassan Al-Zahrani', '966557890123', 'Jeddah, Al-Salamah
+District', 'hassan.alzahrani@email.com'),
+ ('Bandar Al-Hakami', '966568901234', 'Jeddah, Al-Fayhaa District',
+'bandar.alhakami@email.com'),
+ ('Omar Al-Dawood', '966530123456', 'Jeddah, Al-Andalus District',
+'omar.aldawood@email.com'),
+ ('Saad Al-Khatib', '966514567890', 'Jeddah, Al-Rawabi District',
+'saad.alkhatib@email.com'),
+ ('Ibrahim Al-Ghazali', '966545678901', 'Jeddah, Al-Mohammadiyah
+District', 'ibrahim.alghazali@email.com'),
+ ('Abdulaziz Al-Majed', '966536789012', 'Jeddah, Al-Hamra
+District', 'abdulaziz.almajed@email.com'),
+ ('Ali Al-Sheikh', '966577890123', 'Jeddah, Al-Shati District',
+'ali.alsheikh@email.com'),
+ ('Nasser Al-Ali', '966558901234', 'Jeddah, Al-Zahra District',
+'nasser.alali@email.com'),
+ ('Saeed Al-Qarni', '966530123456', 'Jeddah, Al-Balad District',
+'saeed.alqarni@email.com'),
+ ('Khaled Al-Ghazali', '966511234567', 'Jeddah, Al-Fayhaa
+District', 'khaled.alghazali@email.com'),
+ ('Meshal Al-Abdulrahman', '966544567890', 'Jeddah, Al-Andalus
+District', 'meshal.alabdulrahman@email.com');
+-- Insert 20 subscriptions
+INSERT INTO Subscription (StartDate, EndDate, Price, MemberID)
+VALUES
+ ('2023-11-15', '2024-11-15', 150.00, 1),
+ ('2023-11-16', '2024-11-16', 160.00, 2),
+ ('2023-11-17', '2024-11-17', 170.00, 3),
+ ('2023-11-18', '2024-11-18', 180.00, 4),
+ ('2023-11-19', '2024-11-19', 190.00, 5),
+ ('2023-11-20', '2024-11-20', 200.00, 6),
+ ('2023-11-21', '2024-11-21', 210.00, 7),
+ ('2023-11-22', '2024-11-22', 220.00, 8),
+ ('2023-11-23', '2024-11-23', 230.00, 9),
+ ('2023-11-24', '2024-11-24', 240.00, 10),
+ ('2023-11-25', '2024-11-25', 250.00, 11),
+ ('2023-11-26', '2024-11-26', 260.00, 12),
+ ('2023-11-27', '2024-11-27', 270.00, 13),
+ ('2023-11-28', '2024-11-28', 280.00, 14),
+ ('2023-11-29', '2024-11-29', 290.00, 15),
+ ('2023-11-30', '2024-11-30', 300.00, 16),
+ ('2023-12-01', '2024-12-01', 310.00, 17),
+ ('2023-12-02', '2024-12-02', 320.00, 18),
+ ('2023-12-03', '2024-12-03', 330.00, 19),
+ ('2023-12-04', '2024-12-04', 340.00, 20);
+-- Insert 20 classes
+INSERT INTO Class (ClassName, Duration, Class_Time)
+VALUES
+ ('Strength Training', 60, '08:00:00'),
+ ('Boxing Fitness', 45, '10:00:00'),
+ ('High-Intensity Interval Training (HIIT)', 50, '12:00:00'),
+ ('CrossFit', 45, '14:00:00'),
+ ('Martial Arts', 60, '16:00:00'),
+ ('Functional Fitness', 90, '18:00:00'),
+ ('Circuit Training', 45, '08:30:00'),
+ ('Calisthenics', 60, '10:30:00'),
+ ('Weightlifting', 75, '12:30:00'),
+ ('Bodybuilding', 60, '14:30:00'),
+ ('Powerlifting', 45, '16:30:00'),
+ ('Boot Camp', 60, '18:30:00'),
+ ('Athletic Training', 60, '09:00:00'),
+ ('Combat Training', 60, '11:00:00'),
+ ('Swimming Training', 90, '13:00:00'),
+ ('Power Yoga', 60, '15:00:00'),
+ ('Body Sculpting', 45, '17:00:00'),
+ ('Weight Training', 60, '19:00:00'),
+ ('Boxing Techniques', 90, '20:30:00'),
+ ('Kettlebell Training', 60, '09:30:00');
+
+-- Insert associations between Classes and Members
+INSERT INTO class_members (MemberID, ClassID)
+VALUES
+ (1, 1), (1, 2), -- Member 1 associated with Class 1 and Class 2
+ (2, 3), -- Member 2 associated with Class 3
+ (3, 4), -- Member 3 associated with Class 4
+ (4, 5), (4, 6), -- Member 4 associated with Class 5 and Class 6
+ (5, 7), -- Member 5 associated with Class 7
+ (6, 8), -- Member 6 associated with Class 8
+ (7, 9), -- Member 7 associated with Class 9
+ (8, 10), (8, 11), -- Member 8 associated with Class 10 and Class
+ (9, 12), -- Member 9 associated with Class 12
+ (10, 13), -- Member 10 associated with Class 13
+ (11, 14), -- Member 11 associated with Class 14
+ (12, 15), -- Member 12 associated with Class 15
+ (13, 16), -- Member 13 associated with Class 16
+ (14, 17), -- Member 14 associated with Class 17
+ (15, 18), -- Member 15 associated with Class 18
+ (16, 19), -- Member 16 associated with Class 19
+ (17, 20), -- Member 17 associated with Class 20
+ (18, 1), -- Member 18 associated with Class 1
+ (19, 2), -- Member 19 associated with Class 2
+ (20, 3); -- Member 20 associated with Class 3
+-- Insert 20 trainers
+INSERT INTO trainer (Name, Specialization, Phone, Email)
+VALUES
+ ('Amir Ali', 'Fitness Training', '1234567890',
+'amir.ali@email.com'),
+ ('Khalid Hassan', 'Weightlifting', '2345678901',
+'khalid.hassan@email.com'),
+ ('Majed Ibrahim', 'Cardio Workout', '3456789012',
+'majed.ibrahim@email.com'),
+ ('Karim Salah', 'Yoga Instructor', '4567890123',
+'karim.salah@email.com'),
+ ('Rami Faris', 'CrossFit Trainer', '5678901234',
+'rami.faris@email.com'),
+ ('Nizar Hamdi', 'Boxing Coach', '6789012345',
+'nizar.hamdi@email.com'),
+ ('Wael Tarek', 'Pilates Expert', '7890123456',
+'wael.tarek@email.com'),
+ ('Amin Fadi', 'HIIT Specialist', '8901234567',
+'amin.fadi@email.com'),
+ ('Bader Hisham', 'Martial Arts Instructor', '9012345678',
+'bader.hisham@email.com'),
+ ('Jamil Omar', 'Strength Training', '0123456789',
+'jamil.omar@email.com'),
+ ('Adel Kareem', 'Functional Fitness', '9876543210',
+'adel.kareem@email.com'),
+ ('Fares Walid', 'Athletic Coach', '8765432109',
+'fares.walid@email.com'),
+ ('Hani Riyad', 'Bodybuilding Expert', '7654321098',
+'hani.riyad@email.com'),
+ ('Sami Nader', 'Swimming Coach', '6543210987',
+'sami.nader@email.com'),
+ ('Basim Fawaz', 'Weight Training', '5432109876',
+'basim.fawaz@email.com'),
+ ('Tariq Ahmad', 'Boxing Techniques', '4321098765',
+'tariq.ahmad@email.com'),
+ ('Saad Kareem', 'Kettlebell Training', '3210987654',
+'saad.kareem@email.com'),
+ ('Riad Hakim', 'Boot Camp Instructor', '2109876543',
+'riad.hakim@email.com'),
+ ('Nidal Samir', 'Circuit Training', '1098765432',
+'nidal.samir@email.com'),
+ ('Yousef Jamal', 'Power Yoga Teacher', '0987654321',
+'yousef.jamal@email.com');
+
+-- Insert associations between trainers and classes
+INSERT INTO class_trainers (ClassID, TrainerID)
+VALUES
+ (1, 1), -- Class 1 associated with Trainer 1
+ (2, 2), -- Class 2 associated with Trainer 2
+ (3, 3), -- Class 3 associated with Trainer 3
+ (4, 4), -- Class 4 associated with Trainer 4
+ (5, 5), -- Class 5 associated with Trainer 5
+ (6, 6), -- Class 6 associated with Trainer 6
+ (7, 7), -- Class 7 associated with Trainer 7
+ (8, 8), -- Class 8 associated with Trainer 8
+ (9, 9), -- Class 9 associated with Trainer 9
+ (10, 10), -- Class 10 associated with Trainer 10
+ (11, 11), -- Class 11 associated with Trainer 11
+ (12, 1), -- Class 12 associated with Trainer 1 (Trainer 1 hasanother class)
+ (13, 2), -- Class 13 associated with Trainer 2 (Trainer 2 hasanother class)
+ (14, 3), -- Class 14 associated with Trainer 3 (Trainer 3 hasanother class)
+ (15, 4), -- Class 15 associated with Trainer 4 (Trainer 4 hasanother class)
+ (16, 5), -- Class 16 associated with Trainer 5 (Trainer 5 hasanother class)
+ (17, 6), -- Class 17 associated with Trainer 6 (Trainer 6 hasanother class)
+ (18, 7), -- Class 18 associated with Trainer 7 (Trainer 7 hasanother class)
+ (19, 8), -- Class 19 associated with Trainer 8 (Trainer 8 hasanother class)
+ (20, 9); -- Class 20 associated with Trainer 9 (Trainer 9 hasanother class)
+
+
+-- Insert 20 Equipment
+INSERT INTO Equipment (EquipmentName, Quantity)
+VALUES
+ ('Treadmill', 5),
+ ('Stationary Bike', 7),
+ ('Dumbbells', 20),
+ ('Bench Press', 3),
+ ('Kettlebells', 15),
+ ('Yoga Mats', 30),
+ ('Jump Ropes', 25),
+ ('Resistance Bands', 10),
+ ('Medicine Balls', 12),
+ ('Barbells', 8),
+ ('Elliptical Machine', 4),
+ ('Rowing Machine', 5),
+ ('Pull-up Bar', 6),
+ ('Weight Plates', 50),
+ ('Exercise Balls', 20),
+ ('Battle Ropes', 8),
+ ('Squat Rack', 4),
+ ('TRX Suspension Trainer', 10),
+ ('Punching Bag', 3),
+ ('Cable Machine', 7);

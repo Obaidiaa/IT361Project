@@ -17,7 +17,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     height: 100vh;
     margin: 0;
-    background-image: url("space.webp");
+    background-image: url("/assets/img/space.webp");
 }
 
 header {

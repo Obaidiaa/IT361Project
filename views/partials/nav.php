@@ -75,34 +75,28 @@
 </nav> -->
 
 
-<nav>
+<nav class="navbar">
+    <div class="flex-shrink-0">
+        <img class="logo" src="/assets/img/logo.png" alt="Your Company">
+    </div>
 
-    <ul>
-        <div class="flex-shrink-0">
-            <img class="logo" src="/assets/img/Gym System Symbol.jpeg" alt="Your Company">
-        </div>
-        <li>
-            <a class="<?= urlIs('/') ? 'active' : '' ?>" href="/">
-                Home
-            </a>
-        </li>
+    <div class="nav-links">
 
-        <li>
-            <a class="<?= urlIs('/instructors') ? 'active' : '' ?>" href="./instructors">
-                Trainers
-            </a>
-        </li>
+        <a class="<?= urlIs('/') ? 'active' : '' ?>" href="/">
+            Home
+        </a>
 
-        <li>
-            <a class="<?= urlIs('/members') ? 'active' : '' ?>" href="./members">
-                Members
-            </a>
-        </li>
+        <a class="<?= urlIs('/instructors') ? 'active' : '' ?>" href="./instructors">
+            Trainers
+        </a>
 
-        <li>
-            <a class="<?= urlIs('/equipment') ? 'active' : '' ?>" href="./equipment">
-                Equipments
-            </a>
-        </li>
-    </ul>
+        <a class="<?= urlIs('/members') ? 'active' : '' ?>" href="./members">
+            Members
+        </a>
+
+        <a class="<?= urlIs('/equipment') ? 'active' : '' ?>" href="./equipment">
+            Equipments
+        </a>
+    </div>
+
 </nav>

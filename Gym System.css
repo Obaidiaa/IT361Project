@@ -21,7 +21,7 @@ body {
 
 
 header {
-    background-image: url("space.webp");
+    background-image: url("/assets/img/space.webp");
     /*background-color: rgb(30, 31, 36);*/
     height: 8rem;
     display: flex;
@@ -113,7 +113,7 @@ section ul li {
 }
 
 footer {
-    background-image: url("space.webp");
+    background-image: url("/assets/img/space.webp");
     /*background-color: rgb(30, 31, 36);*/
     color: white;
 }

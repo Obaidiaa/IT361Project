@@ -1,0 +1,147 @@
+* {
+    box-sizing: inherit;
+}
+
+.wrapper {
+    width: 100%;
+    margin: auto;
+    max-width: 1024px;
+    min-height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    margin: 0;
+    background-image: url("/assets/img/space.webp");
+} */
+
+header {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+}
+
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+}
+
+.navbar .active {
+    border-bottom: 3px solid black;
+    border-bottom-width: 2px;
+}
+
+img {
+    max-width: 100%;
+}
+
+img.logo {
+    display: block;
+    height: 5rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+header div a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+section {
+    margin: 10px;
+}
+
+section ul li {
+    margin-top: 50px;
+}
+
+body{ min-height: 100vh; margin:0; }
+
+header{ min-height:50px; background:lightcyan; }
+footer{ min-height:50px; background:PapayaWhip; }
+
+
+.footer {
+    background-color: #f0f0f0;
+    /* Light gray background (optional) */
+    /* /* padding: 1rem 2rem; */
+    /* position: fixed;
+    box-sizing: border-box;
+    bottom: 0;
+    width: 100%;
+    left: 0; */
+
+}
+
+.footer-content {
+    display: flex;
+    /* Center content horizontally with flexbox */
+    justify-content: space-between;
+    /* Distribute content evenly */
+    align-items: center;
+    /* Align content vertically */
+}
+
+.social-links {
+    list-style: none;
+    /* Remove default list style */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.social-links li {
+    display: inline-block;
+    /* Display links inline */
+    margin-right: 1rem;
+    /* Space between links */
+}
+
+.social-links a {
+    color: #333;
+    /* Darker text for links */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.social-links a:hover {
+    color: #666;
+    /* Change color on hover */
+}

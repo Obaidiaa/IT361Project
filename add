@@ -1,0 +1,23 @@
+[33mcommit fd9eb80d0de5f6fd13c940bc92c2fd0ae2608762[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Abdulrahman ALObaidi <78088910+Obaidiaa@users.noreply.github.com>
+Date:   Wed Mar 27 18:21:02 2024 +0300
+
+    fix typo
+
+[33mcommit 6b1b56b2f048a447d348f9600a11c650fa1e69d1[m
+Author: Abdulrahman ALObaidi <78088910+Obaidiaa@users.noreply.github.com>
+Date:   Wed Mar 27 18:19:40 2024 +0300
+
+    Create README.md
+
+[33mcommit 965da79e86dbf32e3fed936c02345cd3add9d793[m
+Author: Abdulrahman ALObaidi <78088910+Obaidiaa@users.noreply.github.com>
+Date:   Wed Mar 27 18:06:39 2024 +0300
+
+    Create database_init_query
+
+[33mcommit f2bf792f0040c7beadef4ea3d6aa1cd668adba73[m
+Author: Abdulrahman ALObaidi <78088910+Obaidiaa@users.noreply.github.com>
+Date:   Wed Mar 27 18:03:53 2024 +0300
+
+    init version

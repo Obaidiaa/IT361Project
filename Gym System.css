@@ -16,12 +16,13 @@
 body {
     font-family: 'Open Sans', sans-serif;
     height: 100vh;
-    margin: 0;
-    background-image: url("space.webp");
+    background-color: aliceblue;
 }
 
+
 header {
-    background-color: rgb(30, 31, 36);
+    background-image: url("space.webp");
+    /*background-color: rgb(30, 31, 36);*/
     height: 8rem;
     display: flex;
     align-items: center;
@@ -30,6 +31,7 @@ header {
     flex-shrink: 0;
     flex-wrap: nowrap;
     flex-direction: row;
+    border-bottom: 1px solid black;
 }
 
 nav {
@@ -78,7 +80,7 @@ nav ul li a:active {
     color: black;
     text-decoration: underline;
     background-color: white;
-    border: 1px solid blue;
+    border: 1px solid blue;    
 }
 
 img {
@@ -100,7 +102,10 @@ header div a {
 }
 
 section {
-    margin: 10px;
+    margin: 1px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    padding: 10px;
 }
 
 section ul li {
@@ -108,7 +113,8 @@ section ul li {
 }
 
 footer {
-    background-color: rgb(30, 31, 36);
+    background-image: url("space.webp");
+    /*background-color: rgb(30, 31, 36);*/
     color: white;
 }
 
@@ -116,3 +122,68 @@ footer p {
     margin-left: 40px;
     float: left;
 }
+
+table {
+    border: 1px solid black;
+    width: 100%;
+}
+
+#addButton {
+    position: relative;
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 20px;
+    background-color: rgb(15, 189, 93);
+    color: white;
+}
+
+#clearButton {
+    position: relative;
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    width: 130px;
+    height: 20px;
+    background-color: rgb(189, 15, 41);
+    color: white;
+}
+
+thead, tbody, th {
+    border-right: 1px solid black;
+}
+
+td {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    text-align: center;
+}
+
+.lastHeader {
+    border-right: 0px;
+}
+
+#userForm {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 10px 10px 0 black;
+}
+
+#user_input_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.submit {
+    width: 200px;
+    height: 20px;
+    background-color: rgb(50, 111, 202);
+    color: white;
+    margin: auto;
+}
+

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gyme Management System</title>
+        <link rel = "stylesheet" type = "text/css" href = "Gym System.css">
+
+        <script type = "text/javascript">            
+            
+            window.addEventListener("load", start);
+
+            function start () {
+                document.getElementById("addButton").addEventListener("click", userClick);
+                var tableEquipments = JSON.parse(localStorage.getItem("tableEquipments")) || [];
+                var table = document.getElementById("myTable");
+                table.innerHTML = tableEquipments.join("");
+                document.getElementById("clearButton").addEventListener("click", clearLocal);
+            }
+    
+            function clearLocal () {
+                localStorage.removeItem("tableEquipments");
+            }
+            
+    
+            function userClick () {
+                var userForm = document.getElementById("userForm");            
+                userForm.style.display = "block";
+                document.getElementById("user_input_form").addEventListener("submit", takeInput)
+            }
+
+            
+
+            function takeInput () {
+                event.preventDefault;
+
+                var id = document.getElementById("id").value;
+                var name = document.getElementById("name").value;
+                var quantity = document.getElementById("quantity").value;                
+
+                var table = document.getElementById("myTable");
+                var row = "<tr><td>" + id +"</td>" + "<td>" + name +"</td>" + "<td>" + quantity +
+                    "</td></tr>";
+                table.innerHTML += row;
+
+                var tableEquipments = JSON.parse(localStorage.getItem("tableEquipments")) || [];
+                tableEquipments.push(row);
+                localStorage.setItem("tableEquipments", JSON.stringify(tableEquipments));
+
+                document.getElementById("id").value = "";
+                document.getElementById("name").value = "";
+                document.getElementById("quantity").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("email").value = "";
+
+                submit();
+
+            }
+
+            function submit () {
+                var userForm = document.getElementById("userForm");            
+                userForm.style.display = "none";
+            }
+    
+        </script>
+    </head>
+    <body>
+
+        <main class = "wrapper">
+            <header>
+                <div>
+                    <a href = "Home.html">
+                        <img class = "logo" src = "Gym System Symbol.jpeg" alt = "Gym Symbol">
+                    </a>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li>
+                            <a href = "Home.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a  href = "Trainers.html">
+                                Trainers
+                            </a>
+                        </li>
+
+                        <li>                                
+                            <a href = "Members.html">
+                                Members
+                            </a>
+                        </li>
+
+                        <li>                                
+                            <a class = "active" href = "Equipments.html">
+                                Equipments
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <section>
+                <h1>Equipment Management</h1>
+
+                <p>
+                    In addition to managing trainers and members, our Gym System also keeps track
+                     of gym equipment. It records each piece of equipment’s unique ID, name, and 
+                     quantity. This helps the gym to monitor the availability and condition of 
+                     equipment, ensuring a safe and efficient workout environment for its members.
+                </p>
+
+                <table>
+                    <button id = "addButton">Add +</button>
+                    <button id = "clearButton">Clear local storage</button>
+
+                    <thead>
+                        <th>Equipment ID</th>
+                        <th>Name</th>                        
+                        <th class = "lastHeader">Quantity</th>
+                    </thead>
+
+                    <tbody id = "myTable">
+                        
+                    </tbody>
+
+                </table>
+
+                <div id = "userForm" style = "display: none;">
+
+                    <h2>Add Trainer Information</h2>
+
+                    <form id = "user_input_form">
+
+                        <label for= "id">ID: </label>
+                        <input type = "quantity" id = "id" name = "id" 
+                        placeholder="ID" required><br>
+
+                        <label for = "name">Name:</label>
+                        <input type = "text" id = "name" name = "name" 
+                        placeholder="Name" required><br>
+
+                        <label for = "quantity">quantity:</label>
+                        <input type = "number" id = "quantity" name = "quantity" 
+                        placeholder="quantity" required><br>                        
+
+                        <button class = "submit" type = "submit">Submit</button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+            <footer>
+                <p>
+                    Gym System<br>
+                    Developed by Jeddah Tech Solutions<br>
+                    Jeddah, Saudi Arabia
+                </p>
+
+                <p>
+                    For support and inquiries:<br>
+                    Email: support@gym-system.com<br>
+                    Phone: +966 12 345 6789
+                </p>
+
+                <p style = "float: right; margin-right: 40px;">
+                    Stay connected with us:<br>
+                    <a href = "#">Facebook</a> | <a href = "#">Twitter</a> | <a href = "#">Instagram</a>
+                </p>
+
+                <p>
+                    Gym System - Streamlining Your Fitness Management Needs<br>
+                    © 2024 Jeddah Tech Solutions. All rights reserved.
+                </p>
+
+            </footer>
+    
+        </main>
+    </body>
+
+</html>

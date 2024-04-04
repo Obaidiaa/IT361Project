@@ -80,14 +80,29 @@ if ($method === 'POST') {
     exit;
 } else {
 
-    // get all equipment details from database and store in $equipments variable to be used in the view file equimpent.view.php
-    $equipments = $db->query('SELECT DISTINCT
-    EquipmentID,
-    EquipmentName,
-    Quantity,
-    (SELECT COUNT(*) FROM equipment) AS countEquipment FROM equipment;')->fetchAll(PDO::FETCH_ASSOC);
+
+    $url = parse_url(($_SERVER['REQUEST_URI']))['path'];
 
 
-    // load the view file equimpent.view.php
-    require "views/equimpent.view.php";
+    if ($url === '/getequipment') {
+        // get all equipment details from database and store in $equipments variable to be used in the view file equimpent.view.php
+        $equipments = $db->query('SELECT DISTINCT
+        EquipmentID,
+        EquipmentName,
+        Quantity,
+        (SELECT COUNT(*) FROM equipment) AS countEquipment FROM equipment;')->fetchAll(PDO::FETCH_ASSOC);
+        $response = [
+            'status' => 'success',
+            'message' => 'Equipment retrieved successfully.',
+            'data' => $equipments
+        ];
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($response);
+        exit;
+    } else {
+
+        // load the view file equimpent.view.php
+        require "views/equimpent.view.php";
+    }
 }

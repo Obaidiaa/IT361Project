@@ -85,16 +85,29 @@ if ($method === 'POST') {
     exit;
 } else {
 
-    // get all trainer details from database and store in $instructors variable to be used in the view file instructors.view.php    
-    $instructors = $db->query('SELECT DISTINCT
+    $url = parse_url(($_SERVER['REQUEST_URI']))['path'];
+
+
+    if ($url === '/getinstructors') {
+        // get all trainer details from database and store in $instructors variable to be used in the view file instructors.view.php    
+        $instructors = $db->query('SELECT DISTINCT
     TrainerID,
     Name,   
     Phone,
     Email,
     Specialization,
     (SELECT COUNT(*) FROM trainer) AS countInstructors FROM trainer;')->fetchAll(PDO::FETCH_ASSOC);
-
-
-    // load the view file instructors.view.php
-    require "views/instructors.view.php";
+        $response = [
+            'status' => 'success',
+            'message' => 'Trainers retrieved successfully.',
+            'data' => $instructors
+        ];
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($response);
+        exit;
+    } else {
+        // load the view file instructors.view.php
+        require "views/instructors.view.php";
+    }
 }

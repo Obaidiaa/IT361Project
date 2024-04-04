@@ -7,8 +7,11 @@ $url = parse_url(($_SERVER['REQUEST_URI']))['path'];
 $routes = [
     '/' => 'controllers/index.php',
     '/members' => 'controllers/members.php',
+    '/getmembers' => 'controllers/members.php',
     '/instructors' => 'controllers/instructors.php',
+    '/getinstructors' => 'controllers/instructors.php',
     '/equipment' => 'controllers/equipment.php',
+    '/getequipment' => 'controllers/equipment.php',
     '/about' => 'controllers/about.php'
 ];
 

@@ -5,7 +5,11 @@
 
 <?php require 'partials/header.php'; ?>
 
-
+<script>
+    onload = () => {
+        fetchInstructors();
+    }
+</script>
 
 <main>
     <section>
@@ -30,25 +34,7 @@
             </thead>
 
             <tbody id="myTable">
-                <?php foreach ($instructors as $instructor) : ?>
-                    <tr>
-                        <td><?= $instructor["TrainerID"]; ?></td>
-                        <td><?= $instructor["Name"]; ?></td>
-                        <td><?= $instructor["Specialization"]; ?></td>
-                        <td><?= $instructor["Phone"]; ?></td>
-                        <td><?= $instructor["Email"]; ?></td>
-                        <td>
-                            <div class="Action">
-                                <button class="deleteButton" onclick='toggleDeletePopup(<?= $instructor["TrainerID"]; ?>, "<?= $instructor["Name"]; ?>")'>
-                                    Delete
-                                </button>
-                                <button class="editButton" onclick='toggleEditPopup(<?= json_encode($instructor); ?>, "editForm")'>
-                                    Edit
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+
             </tbody>
 
         </table>
@@ -118,7 +104,7 @@
                     <label class="form-label" for="name">Trainer Name:</label>
                     <input class="form-input" type="text" id="deleteName" name="name" placeholder="Trainer Name" disabled><br>
                     <div class="FormButtons">
-                        <button class="deleteButton" type="submit" onclick="handleDeleteForm(event)">
+                        <button class="deleteButton" type="submit" onclick="handleDeleteForm(event, 'instructor')">
                             Delete
                         </button>
                         <button type="button" class="submitButton" onclick="toggleDeletePopup()">

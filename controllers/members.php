@@ -111,25 +111,31 @@ if ($method === 'POST') {
 } else {
 
 
-    // get all member details from database and store in $members variable to be used in the view file members.view.php
-    $members = $db->query('SELECT DISTINCT
-    Member.MemberID,
-    Member.Name,
-    Member.Address,
-    Member.Phone,
-    Member.Email,
-    -- Subscription.SubscriptionID,
-    -- Subscription.StartDate,
-    -- Subscription.EndDate,
-    -- Subscription.Price,
-    (SELECT COUNT(*) FROM Subscription WHERE EndDate < CURDATE()) AS countExpired,
-    (SELECT COUNT(*) FROM Subscription WHERE EndDate >= CURDATE()) AS countActive
-FROM 
-    Member
-LEFT JOIN 
-    Subscription ON Member.MemberID = Subscription.MemberID;')->fetchAll(PDO::FETCH_ASSOC);
+    $url = parse_url(($_SERVER['REQUEST_URI']))['path'];
+
+    if ($url === '/getmembers') {
+        // get all member details from database and store in $members variable to be used in the view file members.view.php
+        // get all member details from database and store in $members variable to be used in the view file members.view.php
+        $members = $db->query('SELECT DISTINCT
+        MemberID,
+        Name,
+        Address,
+        Phone,
+        Email,
+        (SELECT COUNT(*) FROM member) AS countMembers FROM member;')->fetchAll(PDO::FETCH_ASSOC);
 
 
-    // load the view file members.view.php
-    require "views/members.view.php";
+        $response = [
+            'status' => 'success',
+            'message' => 'Members retrieved successfully.',
+            'data' => $members
+        ];
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($response);
+        exit;
+    } else {
+        // load the view file members.view.php
+        require "views/members.view.php";
+    }
 }

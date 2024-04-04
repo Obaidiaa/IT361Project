@@ -126,11 +126,14 @@ function handleSubmitForm(event, formid, type) {
                     toggleAddPopup();
                 }
 
+                if (type == 'member') {
+                    fetchMembers();
+                } else if (type == 'instructor') {
+                    fetchInstructors();
+                } else if (type == 'equipment') {
+                    fetchEquipment();
+                }
 
-                // wait for 1 second
-                setTimeout(() => {
-                    refreashPage();
-                }, 1000);
 
                 // Hide the form
                 form.reset();
@@ -144,7 +147,7 @@ function handleSubmitForm(event, formid, type) {
         });
 }
 
-function handleDeleteForm(event) {
+function handleDeleteForm(event, type) {
     event.preventDefault();
 
     // Get the form element
@@ -189,10 +192,14 @@ function handleDeleteForm(event) {
                 // Display a success message
                 ToastMessage(data.message, 'green');
                 toggleDeletePopup();
-                // wait for 1 second
-                setTimeout(() => {
-                    refreashPage();
-                }, 1000);
+
+                if (type == 'member') {
+                    fetchMembers();
+                } else if (type == 'instructor') {
+                    fetchInstructors();
+                } else if (type == 'equipment') {
+                    fetchEquipment();
+                }
 
                 // Hide the form
                 form.reset();
@@ -201,7 +208,6 @@ function handleDeleteForm(event) {
             }
         })
         .catch(error => {
-            document.getElementById('errorMessage').innerText = 'An error occurred. Please try again later.';
             ToastMessage('An error occurred. Please try again later.', 'red');
             // Handle any errors that occurred during the request
         });
@@ -221,9 +227,6 @@ function ToastMessage(text, color) {
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function refreashPage() {
-    location.reload();
-}
 
 function validateMemberForm(formid) {
     var name = document.getElementById(formid + "-name").value.trim();
@@ -362,4 +365,102 @@ function displayErrorMessage(fieldId, message) {
 function clearErrorMessages(fieldId) {
     var errorMessageElement = document.getElementById(fieldId + "-error");
     errorMessageElement.hidden = true;
+}
+
+
+function fetchMembers() {
+    fetch('/getmembers')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('myTable');
+            tableBody.innerHTML = '';
+            data.data.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${member.MemberID}</td>
+                <td>${member.Name}</td>
+                <td>${member.Address}</td>
+                <td>${member.Phone}</td>
+                <td>${member.Email}</td>
+                <td>
+                    <div class="Action">
+                        <button class="deleteButton" onclick='toggleDeletePopup(${member.MemberID}, "${member.Name}")'>
+                            Delete
+                        </button>
+                        <button class="editButton" onclick='toggleEditPopup(${JSON.stringify(member)}, "editForm")'>
+                            Edit
+                        </button>
+                    </div>
+                </td>
+            `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function fetchEquipment() {
+    fetch('/getequipment')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('myTable');
+            tableBody.innerHTML = '';
+            data.data.forEach(equipment => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${equipment.EquipmentID}</td>
+                <td>${equipment.EquipmentName}</td>
+                <td>${equipment.Quantity}</td>
+                <td>
+                    <div class="Action">
+                        <button class="deleteButton" onclick='toggleDeletePopup(${equipment.EquipmentID}, "${equipment.EquipmentName}")'>
+                            Delete
+                        </button>
+                        <button class="editButton" onclick='toggleEditPopup(${JSON.stringify(equipment)}, "editForm")'>
+                            Edit
+                        </button>
+                    </div>
+                </td>
+            `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function fetchInstructors() {
+    fetch('/getinstructors')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('myTable');
+            tableBody.innerHTML = '';
+            data.data.forEach(instructor => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${instructor.TrainerID}</td>
+                <td>${instructor.Name}</td>
+                <td>${instructor.Specialization}</td>
+                <td>${instructor.Phone}</td>
+                <td>${instructor.Email}</td>
+                <td>
+                    <div class="Action">
+                        <button class="deleteButton" onclick='toggleDeletePopup(${instructor.TrainerID}, "${instructor.Name}")'>
+                            Delete
+                        </button>
+                        <button class="editButton" onclick='toggleEditPopup(${JSON.stringify(instructor)}, "editForm")'>
+                            Edit
+                        </button>
+                    </div>
+                </td>
+            `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }

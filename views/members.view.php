@@ -6,6 +6,12 @@
 <?php require 'partials/header.php'; ?>
 
 
+<script>
+    onload = () => {
+        fetchMembers();
+    }
+</script>
+
 <main>
     <section>
         <p>
@@ -31,36 +37,7 @@
             </thead>
 
             <tbody id="myTable">
-                <?php foreach ($members as $member) : ?>
-                    <tr>
-                        <td><?= $member["MemberID"]; ?></td>
-                        <td><?= $member["Name"]; ?></td>
-                        <td><?= $member["Address"]; ?></td>
-                        <td><?= $member["Phone"]; ?></td>
-                        <td><?= $member["Email"]; ?></td>
-                        <td>
 
-                            <div class="Action">
-                                <button class="deleteButton" onclick='toggleDeletePopup(<?= $member["MemberID"]; ?>, "<?= $member["Name"]; ?>")'>
-                                    Delete
-                                </button>
-                                <button class="editButton" onclick='toggleEditPopup(<?= json_encode($member); ?>, "editForm")'>
-                                    Edit
-                                </button>
-                                </button>
-                            </div>
-
-                            <!-- <form method="POST" action="/members">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="id" value="<?= $member["MemberID"]; ?>">
-                                <button type="submit">
-                                    Delete
-                                </button>
-                            </form> -->
-
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
             </tbody>
 
         </table>
@@ -128,7 +105,7 @@
                     <label class="form-label" for="name">Member Name:</label>
                     <input class="form-input" type="text" id="deleteName" name="name" placeholder="Member Name" disabled><br>
                     <div class="FormButtons">
-                        <button class="deleteButton" type="submit" onclick="handleDeleteForm(event)">
+                        <button class="deleteButton" type="submit" onclick="handleDeleteForm(event, 'member')">
                             Delete
                         </button>
                         <button type="button" class="submitButton" onclick="toggleDeletePopup()">

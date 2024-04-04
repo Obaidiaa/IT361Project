@@ -1,37 +1,3 @@
-* {
-    box-sizing: inherit;
-}
-
-.wrapper {
-    width: 100%;
-    margin: auto;
-    max-width: 1024px;
-    min-height: auto;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-/* body {
-    font-family: 'Open Sans', sans-serif;
-    height: 100vh;
-    margin: 0;
-    background-image: url("/assets/img/space.webp");
-} */
-
-header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-wrap: nowrap;
-    flex-direction: row;
-}
-
-
 .navbar {
     display: flex;
     justify-content: flex-start;
@@ -75,30 +41,117 @@ img.logo {
     flex-shrink: 0;
 }
 
-header div a {
-    height: 100%;
+.container {
+    max-width: 1024px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-row {
     display: flex;
+    /* Use flexbox for row layout */
+    flex-wrap: wrap;
+    /* Allow cards to wrap to a new line if needed */
+}
+
+.card {
+    /* Existing card styles from previous example */
+    margin-right: 20px;
+    /* Space between cards */
+    flex: 1;
+    /* Make cards flexible to fill available space */
+}
+
+.card:last-child {
+    margin-right: 0;
+    /* Remove margin from the last card */
+}
+
+.container img {
+    margin: 0 auto;
+    /* Center the image horizontally with margins */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.section {
+    display: flex;
+    /* Use flexbox for better layout */
     align-items: center;
-    flex-grow: 0;
-    flex-shrink: 0;
+    /* Align content vertically */
+    margin-bottom: 40px;
 }
 
-section {
-    margin: 10px;
+.section .icon {
+    margin-right: 20px;
+    /* Space between icon and text */
 }
 
-section ul li {
-    margin-top: 50px;
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-body {
-    min-height: 100vh;
-    margin: 0;
+.section a {
+    color: #007bff;
+    /* Blue link color */
+    text-decoration: none;
+    /* Remove underline */
 }
 
-header {
-    min-height: 100px;
-    background: rgb(255, 255, 255);
+.section a:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    border-collapse: collapse;
+    /* Remove default table border spacing */
+    width: 100%;
+    /* Make table occupy full width */
+}
+
+th,
+td {
+    padding: 10px;
+    /* Add padding to cells */
+    border: 1px solid #ddd;
+    /* Add a thin border to cells */
+    text-align: left;
+    /* Align text to the left */
+}
+
+thead {
+    background-color: #f2f2f2;
+    /* Light gray background for header row */
+}
+
+th {
+    font-weight: bold;
+    /* Make header text bold */
+}
+
+.lastHeader {
+    /* Style for the last header cell (optional) */
+    text-align: center;
+    /* Center text in the last header cell */
+}
+
+/* Action Button Styles */
+.action-buttons {
+    display: flex;
+    /* Arrange buttons horizontally */
+    justify-content: space-between;
+    /* Space buttons evenly */
 }
 
 footer {
@@ -110,19 +163,7 @@ footer {
     /* position: fixed; */
     bottom: 0;
     width: 100%;
-
-}
-
-
-.footer {
     background-color: #f0f0f0;
-    /* Light gray background (optional) */
-    /* /* padding: 1rem 2rem; */
-    /* position: fixed;
-    box-sizing: border-box;
-    bottom: 0;
-    width: 100%;
-    left: 0; */
 
 }
 
@@ -137,28 +178,6 @@ footer {
 
 
 
-
-table {
-    border: 1px solid black;
-    width: 100%;
-}
-
-
-thead,
-tbody,
-th {
-    border-right: 1px solid black;
-}
-
-td {
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-    text-align: center;
-}
-
-.lastHeader {
-    border-right: 0px;
-}
 
 #userForm {
     padding: 20px;

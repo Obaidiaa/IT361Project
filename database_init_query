@@ -27,29 +27,7 @@ Specialization varchar(255),
 Phone varchar(15),
 Email varchar(255)
  );
--- Create Class Table
-create table Class(
-ClassID int primary key auto_increment,
-ClassName varchar(255),
-Duration int,
-Class_Time Time
- );
--- Create Class Members Table many to many relationship
-create table Class_Members(
-MemberID int,
-ClassID int,
-primary key (MemberID, ClassID),
-foreign key (MemberID) references Member(MemberID),
-foreign key (ClassID) references Class(ClassID)
- );
--- Create Class Trainers Table many to many relationship
-create table Class_Trainers(
-TrainerID int,
-ClassID int,
-primary key (TrainerID, ClassID),
-foreign key (TrainerID) references Trainer(TrainerID),
-foreign key (ClassID) references Class(ClassID)
- );
+
 -- Create Equipment Table
 create table Equipment(
 EquipmentID int primary key auto_increment,
@@ -122,53 +100,7 @@ VALUES
  ('2023-12-02', '2024-12-02', 320.00, 18),
  ('2023-12-03', '2024-12-03', 330.00, 19),
  ('2023-12-04', '2024-12-04', 340.00, 20);
--- Insert 20 classes
-INSERT INTO Class (ClassName, Duration, Class_Time)
-VALUES
- ('Strength Training', 60, '08:00:00'),
- ('Boxing Fitness', 45, '10:00:00'),
- ('High-Intensity Interval Training (HIIT)', 50, '12:00:00'),
- ('CrossFit', 45, '14:00:00'),
- ('Martial Arts', 60, '16:00:00'),
- ('Functional Fitness', 90, '18:00:00'),
- ('Circuit Training', 45, '08:30:00'),
- ('Calisthenics', 60, '10:30:00'),
- ('Weightlifting', 75, '12:30:00'),
- ('Bodybuilding', 60, '14:30:00'),
- ('Powerlifting', 45, '16:30:00'),
- ('Boot Camp', 60, '18:30:00'),
- ('Athletic Training', 60, '09:00:00'),
- ('Combat Training', 60, '11:00:00'),
- ('Swimming Training', 90, '13:00:00'),
- ('Power Yoga', 60, '15:00:00'),
- ('Body Sculpting', 45, '17:00:00'),
- ('Weight Training', 60, '19:00:00'),
- ('Boxing Techniques', 90, '20:30:00'),
- ('Kettlebell Training', 60, '09:30:00');
 
--- Insert associations between Classes and Members
-INSERT INTO class_members (MemberID, ClassID)
-VALUES
- (1, 1), (1, 2), -- Member 1 associated with Class 1 and Class 2
- (2, 3), -- Member 2 associated with Class 3
- (3, 4), -- Member 3 associated with Class 4
- (4, 5), (4, 6), -- Member 4 associated with Class 5 and Class 6
- (5, 7), -- Member 5 associated with Class 7
- (6, 8), -- Member 6 associated with Class 8
- (7, 9), -- Member 7 associated with Class 9
- (8, 10), (8, 11), -- Member 8 associated with Class 10 and Class
- (9, 12), -- Member 9 associated with Class 12
- (10, 13), -- Member 10 associated with Class 13
- (11, 14), -- Member 11 associated with Class 14
- (12, 15), -- Member 12 associated with Class 15
- (13, 16), -- Member 13 associated with Class 16
- (14, 17), -- Member 14 associated with Class 17
- (15, 18), -- Member 15 associated with Class 18
- (16, 19), -- Member 16 associated with Class 19
- (17, 20), -- Member 17 associated with Class 20
- (18, 1), -- Member 18 associated with Class 1
- (19, 2), -- Member 19 associated with Class 2
- (20, 3); -- Member 20 associated with Class 3
 -- Insert 20 trainers
 INSERT INTO trainer (Name, Specialization, Phone, Email)
 VALUES
@@ -212,30 +144,6 @@ VALUES
 'nidal.samir@email.com'),
  ('Yousef Jamal', 'Power Yoga Teacher', '0987654321',
 'yousef.jamal@email.com');
-
--- Insert associations between trainers and classes
-INSERT INTO class_trainers (ClassID, TrainerID)
-VALUES
- (1, 1), -- Class 1 associated with Trainer 1
- (2, 2), -- Class 2 associated with Trainer 2
- (3, 3), -- Class 3 associated with Trainer 3
- (4, 4), -- Class 4 associated with Trainer 4
- (5, 5), -- Class 5 associated with Trainer 5
- (6, 6), -- Class 6 associated with Trainer 6
- (7, 7), -- Class 7 associated with Trainer 7
- (8, 8), -- Class 8 associated with Trainer 8
- (9, 9), -- Class 9 associated with Trainer 9
- (10, 10), -- Class 10 associated with Trainer 10
- (11, 11), -- Class 11 associated with Trainer 11
- (12, 1), -- Class 12 associated with Trainer 1 (Trainer 1 hasanother class)
- (13, 2), -- Class 13 associated with Trainer 2 (Trainer 2 hasanother class)
- (14, 3), -- Class 14 associated with Trainer 3 (Trainer 3 hasanother class)
- (15, 4), -- Class 15 associated with Trainer 4 (Trainer 4 hasanother class)
- (16, 5), -- Class 16 associated with Trainer 5 (Trainer 5 hasanother class)
- (17, 6), -- Class 17 associated with Trainer 6 (Trainer 6 hasanother class)
- (18, 7), -- Class 18 associated with Trainer 7 (Trainer 7 hasanother class)
- (19, 8), -- Class 19 associated with Trainer 8 (Trainer 8 hasanother class)
- (20, 9); -- Class 20 associated with Trainer 9 (Trainer 9 hasanother class)
 
 
 -- Insert 20 Equipment

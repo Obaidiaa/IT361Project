@@ -91,10 +91,27 @@ section ul li {
     margin-top: 50px;
 }
 
-body{ min-height: 100vh; margin:0; }
+body {
+    min-height: 100vh;
+    margin: 0;
+}
 
-header{ min-height:50px; background:lightcyan; }
-footer{ min-height:50px; background:PapayaWhip; }
+header {
+    min-height: 100px;
+    background: rgb(255, 255, 255);
+}
+
+footer {
+    min-height: 2rem;
+    background: PapayaWhip;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+
+}
 
 
 .footer {
@@ -118,30 +135,295 @@ footer{ min-height:50px; background:PapayaWhip; }
     /* Align content vertically */
 }
 
-.social-links {
-    list-style: none;
-    /* Remove default list style */
-    margin: 0;
-    /* Remove default margin */
-    padding: 0;
-    /* Remove default padding */
+
+
+
+table {
+    border: 1px solid black;
+    width: 100%;
 }
 
-.social-links li {
-    display: inline-block;
-    /* Display links inline */
-    margin-right: 1rem;
-    /* Space between links */
+
+thead,
+tbody,
+th {
+    border-right: 1px solid black;
 }
 
-.social-links a {
-    color: #333;
-    /* Darker text for links */
-    text-decoration: none;
-    /* Remove underline */
+td {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    text-align: center;
 }
 
-.social-links a:hover {
-    color: #666;
-    /* Change color on hover */
+.lastHeader {
+    border-right: 0px;
+}
+
+#userForm {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 10px 10px 0 black;
+}
+
+#user_input_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.submit {
+    width: 200px;
+    height: 20px;
+    background-color: rgb(50, 111, 202);
+    color: white;
+    margin: auto;
+}
+
+.btn-open-popup {
+    padding: 6px 6px;
+    font-size: 18px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-open-popup:hover {
+    background-color: #4caf50;
+}
+
+.overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-box {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    width: 320px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #444;
+    text-align: left;
+}
+
+.form-input {
+    padding: 10px;
+    /* margin-bottom: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.btn-close-popup {
+    margin-top: 12px;
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-submit:hover,
+.btn-close-popup:hover {
+    background-color: #4caf50;
+}
+
+/* Keyframes for fadeInUp animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for popup */
+.overlay-container.show {
+    display: flex;
+    opacity: 1;
+}
+
+.Action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    /* display: flex;
+    justify-content: space-evenly; */
+
+}
+
+.submitButton {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 12px 12px;
+}
+
+.deleteButton {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.editButton {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.FormButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.addButton {
+
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.invalid {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }

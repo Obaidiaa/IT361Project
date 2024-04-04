@@ -1,5 +1,8 @@
+<!-- Footer Section of the website that is shared across all views in the application to avoid code duplication. -->
+
 </div>
 
+<div id="snackbar"> </div>
 
 </body>
 
@@ -15,5 +18,7 @@
         </ul>
     </div>
 </footer>
+
+<script type="text/javascript" src="assets/js/main.js"></script>
 
 </html>

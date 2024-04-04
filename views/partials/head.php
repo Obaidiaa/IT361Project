@@ -1,3 +1,5 @@
+<!-- Head section of the HTML document that is shared across all views in the application to avoid code duplication. -->
+
 <!DOCTYPE html>
 <html lang="en">
 

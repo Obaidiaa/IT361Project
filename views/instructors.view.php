@@ -5,73 +5,134 @@
 
 <?php require 'partials/header.php'; ?>
 
+
+
 <main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+    <section>
+        <p>
+            The Gym System efficiently manages all trainer-related information.
+            It keeps track of each trainer’s unique ID, name, area of specialization,
+            phone number, and email address. This allows for easy access to trainer
+            profiles and facilitates communication between trainers and gym management.
+        </p>>
 
+        <table>
 
-        <div class="mt-8">
-            <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Members List</h3>
-                    <div class="mt-5">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
-                                <tr>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        ID
-                                    </th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        Name
-                                    </th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        Specialization
-                                    </th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        Email
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <?php foreach ($instructors as $instructor) : ?>
-                                    <tr>
-                                        <td class=" py-4 whitespace-no-wrap">
-                                            <div class="flex items-center">
-                                                <div class="ml-4">
-                                                    <div class="text-sm leading-5 font-medium text-gray-900"><?= $instructor["TrainerID"]; ?></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class=" py-4 whitespace-no-wrap">
-                                            <div class="flex items-center">
-                                                <div class="ml-4">
-                                                    <div class="text-sm leading-5 font-medium text-gray-900"><?= $instructor["Name"]; ?></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="py-4 whitespace-no-wrap">
-                                            <div class="flex items-center">
-                                                <div class="ml-4">
-                                                    <div class="text-sm leading-5 font-medium text-gray-900"><?= $instructor["Specialization"]; ?></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class=" py-4 whitespace-no-wrap">
-                                            <div class="flex items-center">
-                                                <div class="ml-4">
-                                                    <div class="text-sm leading-5 font-medium text-gray-900"><?= $instructor["Email"]; ?></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
+            <thead>
+                <th>Trainer ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th class="lastHeader">Action <button class="addButton" onclick="toggleAddPopup()">
+                        Add +
+                    </button></th>
+            </thead>
 
-                            </tbody>
-                        </table>
+            <tbody id="myTable">
+                <?php foreach ($instructors as $instructor) : ?>
+                    <tr>
+                        <td><?= $instructor["TrainerID"]; ?></td>
+                        <td><?= $instructor["Name"]; ?></td>
+                        <td><?= $instructor["Specialization"]; ?></td>
+                        <td><?= $instructor["Phone"]; ?></td>
+                        <td><?= $instructor["Email"]; ?></td>
+                        <td>
+                            <div class="Action">
+                                <button class="deleteButton" onclick='toggleDeletePopup(<?= $instructor["TrainerID"]; ?>, "<?= $instructor["Name"]; ?>")'>
+                                    Delete
+                                </button>
+                                <button class="editButton" onclick='toggleEditPopup(<?= json_encode($instructor); ?>, "editForm")'>
+                                    Edit
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+
+        </table>
+
+        <div id="popupAddOverlay" class="overlay-container">
+            <div class="popup-box">
+                <h2>Add Trainer Information</h2>
+                <form class="form-container" method="POST" id="addForm" action="/instructors">
+                    <input type="hidden" name="_method" value="POST">
+                    <label class="form-label" for="addForm-name">Name:</label>
+                    <input class="form-input" type="text" id="addForm-name" name="name" placeholder="Name" required><br>
+                    <span class="error-message" id="addForm-name-error" hidden></span><br>
+                    <label class="form-label" for="specialization">Specialization:</label>
+                    <input class="form-input" type="text" id="addForm-specialization" name="specialization" placeholder="Specialization" required><br>
+                    <span class="error-message" id="addForm-specialization-error" hidden></span><br>
+                    <label class="form-label" for="addForm-phone">Phone:</label>
+                    <input class="form-input" type="tel" id="addForm-phone" name="phone" pattern="[0-9]*" title="Phone" placeholder="Phone"><br>
+                    <span class="error-message" id="addForm-phone-error" hidden></span><br>
+                    <label class="form-label" for="addForm-email">Email:</label>
+                    <input class="form-input" type="email" id="addForm-email" name="email" placeholder="Email"><br>
+                    <span class="error-message" id="addForm-email-error" hidden></span><br>
+                    <div class="FormButtons">
+                        <button class="submitButton" type="submit" onclick="handleSubmitForm(event, 'addForm', 'instructor')">
+                            Submit
+                        </button>
+
+                        <button type="button" class="deleteButton" onclick="toggleAddPopup()">
+                            Close
+                        </button>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
-    </div>
+
+
+        <div id="popupEditOverlay" class="overlay-container">
+            <div class="popup-box">
+                <h2>Edit Trainer Information</h2>
+                <form class="form-container" id="editForm" method="POST" action="/instructors">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div id="editFormContent" class="form-container">
+
+                    </div>
+                    <div class="FormButtons">
+
+                        <button class="submitButton" type="submit" onclick="handleSubmitForm(event, 'editForm', 'instructor')">
+                            Submit
+                        </button>
+
+                        <button type="button" class="deleteButton" onclick="toggleEditPopup()">
+                            Close
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+        <div id="popupDeleteOverlay" class="overlay-container">
+            <div class="popup-box">
+                <h2>Delete Equipment</h2>
+                <form class="form-container" id="deleteForm" method="POST" action="/instructors">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" id="deleteId" name="id">
+                    <label class="form-label" for="name">Trainer Name:</label>
+                    <input class="form-input" type="text" id="deleteName" name="name" placeholder="Trainer Name" disabled><br>
+                    <div class="FormButtons">
+                        <button class="deleteButton" type="submit" onclick="handleDeleteForm(event)">
+                            Delete
+                        </button>
+                        <button type="button" class="submitButton" onclick="toggleDeletePopup()">
+                            Close
+                        </button>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </section>
 
 </main>
 
